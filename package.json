@@ -1,0 +1,14 @@
+{
+  "name": "datekeeper-frontend",
+  "version": "1.0.0",
+  "description": "js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Ilkaan Bingöl",
+  "license": "ISC"
+}
