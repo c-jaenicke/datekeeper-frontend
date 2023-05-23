@@ -10,5 +10,19 @@
     "js"
   ],
   "author": "Ilkaan Bingöl",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-vue": "^9.13.0",
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "babel-core": "^7.0.0-beta.3",
+    "babel-jest": "^27.0.0-next.8",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "expect": "^29.5.0"
+  }
 }
