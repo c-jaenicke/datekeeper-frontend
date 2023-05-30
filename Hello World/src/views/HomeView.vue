@@ -1,29 +1,38 @@
 <script>
-
 export default {
   data() {
     return {
-      items: []
+      // liste mit events
+      events: [],
     }
   },
   methods: {
-    getItems() {
-      this.items = []
-      const endpoint = 'http://' + url + '/items/all'
+    // methode um liste von events vom backend zu bekommen
+    getEvents() {
+      // event liste leeren damit es keine duplikate gibt
+      this.events = []
+      // abfrage url setzen
+      const endpoint = 'http://localhost:8080/events'
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
       }
+      // abfrage starten
       fetch(endpoint, requestOptions)
           .then((response) => response.json())
           .then((result) =>
               result.forEach((thing) => {
-                this.items.push(thing)
+                this.events.push(thing)
               })
           )
           .catch((error) => console.log('error', error))
     },
-  }}
+  },
+  // list mit events bei Aufruf der Seite sofort laden
+  beforeMount() {
+    this.getEvents()
+  }
+}
 </script>
 
 <style>
@@ -31,11 +40,13 @@ p {
   font-size: larger;
   line-height: 5px;
   margin-top: 70px;
-
-
 }
 
+button {
+  margin-left: 70px;
+}
 </style>
+
 <template>
   <main>
     <div class="container py-4 px-3 mx-auto">
@@ -59,6 +70,12 @@ p {
           </div>
         </div>
       </nav>
+
+      <ol>
+        <!-- Fuer jedes Element in der Liste in eigenes Listenelement erzeugen. Zugriff auf bestandteile des events durch {{ event.<...> }} -->
+        <li v-for="event in this.events">{{ event.eventDate }} - {{ event.title }} - {{ event.description }}</li>
+      </ol>
+
       <p>- Event 1
         <button style="margin-right: 70px" type="button" class="btn btn-success">Success</button>
         <button style="margin-right: 40px" type="button" class="btn btn-danger">Danger</button>
