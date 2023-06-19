@@ -4,6 +4,9 @@ export default {
     return {
       // liste mit events
       events: [],
+      title: "",
+      description: "",
+      eventDate: "",
     }
   },
   methods: {
@@ -27,6 +30,32 @@ export default {
           )
           .catch((error) => console.log('error', error))
     },
+    createItem() {
+      this.items = []
+      const endpoint = 'http://localhost:8080/new'
+      const requestOptions = {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          "title": this.title,
+          "description": this.description,
+          "eventDate": this.eventDate,
+        })
+      }
+      fetch(endpoint, requestOptions)
+          .then((response) => response.json())
+          .then((result) =>
+              result.forEach((thing) => {
+                this.events.push(thing)
+              })
+          )
+          .catch((error) => console.log('error', error))
+    },
+    resetInput() {
+      this.title = ""
+      this.description = ""
+      this.eventDate = ""
+    }
   },
   // list mit events bei Aufruf der Seite sofort laden
   beforeMount() {
@@ -75,6 +104,37 @@ button {
         <!-- Fuer jedes Element in der Liste in eigenes Listenelement erzeugen. Zugriff auf bestandteile des events durch {{ event.<...> }} -->
         <li v-for="event in this.events">{{ event.eventDate }} - {{ event.title }} - {{ event.description }}</li>
       </ol>
+
+      <div class="container">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Titel</span>
+          <input type="text" class="form-control" aria-label="titel" aria-describedby="basic-addon1"
+                 v-model="title">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Beschreibung</span>
+          <textarea class="form-control" aria-label="description" aria-describedby="basic-addon-1"
+                    v-model="description"></textarea>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Datum</span>
+          <input type="date" class="form-control" aria-label="eventDate" aria-describedby="basic-addon1"
+                 v-model="eventDate">
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="resetInput()">
+            Abbrechen
+          </button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                  @click="createItem(); resetInput()">
+            Speichern
+          </button>
+        </div>
+
+      </div>
 
       <p>- Event 1
         <button style="margin-right: 70px" type="button" class="btn btn-success">Success</button>
