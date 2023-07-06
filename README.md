@@ -1,6 +1,6 @@
-# datekeeper-frontend - Semesterprojekt Webtechnologien
+# datekeeper-frontend-test
 
-Semesterprojekt in dem Kurs Webtechnologien, Sommersemester 2023.
+Frontend für das [c-jaenicke/datekeeper-backend](https://github.com/c-jaenicke/datekeeper-backend) Projekt.
 
 ## Teilnehmer
 
@@ -9,5 +9,16 @@ Semesterprojekt in dem Kurs Webtechnologien, Sommersemester 2023.
 
 ## Idee
 
-Ein Kalender zum eintragen von Terminen und Events.
+Ein Kalender zum Eintragen von Terminen und Events.
 
+## Anwenderdokumentation
+
+### Abrufen von anstehenden Terminen
+
+### Kalenderübersicht aufrufen
+
+### Termin erstellen
+
+### Termin bearbeiten
+
+### Termin löschen
